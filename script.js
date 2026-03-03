@@ -7,6 +7,7 @@ let gridSize = 16;
 gridBuild(gridSize);
 
 settings.addEventListener("click", () => {
+   canva.innerHTML = ""; 
    gridSize = parseInt(prompt("choose grid size (max 100)"));
    console.log("Taille de la grille : " + gridSize);
    gridBuild(gridSize);
@@ -29,9 +30,10 @@ function gridBuild(gridSize) {
 
 // a clear button in order to remove the color to the painted squares
 
-const grid = document.querySelectorAll(".square");
+
 
 clear.addEventListener("click", () => {
+    const grid = document.querySelectorAll(".square");
     grid.forEach(div => {
         div.classList.remove("black");
     });
