@@ -1,6 +1,7 @@
 const canva = document.querySelector("#canva");
 const clear = document.querySelector("#clear");
 const settings = document.querySelector("#settings");
+const checkboxRainbow = document.querySelector("#rainbow");
 
 // we choose to set grid size to 16 for the first print of the page
 let gridSize = 16;
@@ -35,7 +36,19 @@ function gridBuild(gridSize) {
         square.style.width = `${squareSize}px`;
         square.style.height = `${squareSize}px`;
         square.addEventListener("mouseover", () => {
-            square.classList.add("black");
+
+        if (square.style.backgroundColor) return
+
+        if (checkboxRainbow.checked) {
+
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+        } else {
+            square.style.backgroundColor = "#000000";
+        } 
+            
         });
         canva.appendChild(square);
     }
@@ -43,9 +56,9 @@ function gridBuild(gridSize) {
 
 // a clear button in order to remove the color to the painted squares
 clear.addEventListener("click", () => {
-    const grid = document.querySelectorAll(".square");
-    grid.forEach(div => {
-        div.classList.remove("black");
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(square => {
+        square.style.backgroundColor = "";
     });
 });
 
