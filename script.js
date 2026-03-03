@@ -6,6 +6,8 @@ const settings = document.querySelector("#settings");
 let gridSize = 16;
 gridBuild(gridSize);
 
+
+// we need to ask the grid size via the settings button
 settings.addEventListener("click", () => {
    canva.innerHTML = ""; 
    gridSize = parseInt(prompt("choose grid size (max 100)"));
@@ -16,11 +18,15 @@ settings.addEventListener("click", () => {
 
 function gridBuild(gridSize) {
 
+    squareSize = 900 / gridSize;
+
     squaresNumber = gridSize * gridSize;
 
     for (let i = 0 ; i < squaresNumber ; i++) {
         const square = document.createElement("div");
         square.classList.add("square");
+        square.style.width = `${squareSize}px`;
+        square.style.height = `${squareSize}px`;
         square.addEventListener("mouseover", () => {
             square.classList.add("black");
         });
@@ -29,9 +35,6 @@ function gridBuild(gridSize) {
 }
 
 // a clear button in order to remove the color to the painted squares
-
-
-
 clear.addEventListener("click", () => {
     const grid = document.querySelectorAll(".square");
     grid.forEach(div => {
