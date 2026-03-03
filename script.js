@@ -11,6 +11,13 @@ gridBuild(gridSize);
 settings.addEventListener("click", () => {
    canva.innerHTML = ""; 
    gridSize = parseInt(prompt("choose grid size (max 100)"));
+
+    if (gridSize > 100) {
+        alert("grid max capacity reached, please choose a values below 100");
+        gridBuild(16);
+        return
+    }
+
    console.log("Taille de la grille : " + gridSize);
    gridBuild(gridSize);
 
